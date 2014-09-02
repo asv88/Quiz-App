@@ -3,6 +3,7 @@ $(document).ready(function () {
 	$('.multi-choice').submit(function (e) {
 		e.preventDefault();
 	});
+	
 	//question array object holds all answers, questions, and explanation
 	var questions = [{
 		question: "On July 4, 1976, the Modern Israeli Defense Force commandos executed a nighttime raid at the Uganda airport to rescue hostages from Palestinian and German terrorists. Which Biblical military hero rescued his relative using this tactic, which has been taught in military academies across the world?",
@@ -46,11 +47,10 @@ $(document).ready(function () {
 	var currentQuestion = 0;
 	//tracks array position of questions array in order to access correct answer, question, explanation properties
 	var questionNumber = 1;
-	//sets the text of the question # h3 
+	//sets the text of the question # in h3 
 	
-	$(".question").html("<h3>Question " + questionNumber  + "</h3>" + "<p>" +questions[currentQuestion].question+"</p>");
-	
-	$('<fieldset><input name="choice" class="choice" id="choice1" type="radio" value="0"><label for="choice1"></label><p>' + questions[currentQuestion].choices[0] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice2" type="radio"  value="1"><label for="choice2"></label><p>' + questions[currentQuestion].choices[1] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice3" type="radio"  value="2"><label for="choice3"></label><p>' + questions[currentQuestion].choices[2] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice4" type="radio"  value="3"><label for="choice4"></label><p>' + questions[currentQuestion].choices[3] + '</p></fieldset>').prependTo(".multi-choice > form");
+	addQuestionChoices();
+	//dynamically places content(question/answers) onto page when first loaded.
 	
 	$("#directions > a").click(function () {
 		//Directions will appear for user on Directions button
@@ -71,11 +71,8 @@ $(document).ready(function () {
 				$(".score").fadeIn(700);
 	});
 	
-	
-	
-	///NEEDS WORK///
+	///NEW GAME CLICK///
 	$("#new-game > a").click(function () {
-		//NEW GAME
 		//RESETS GLOBAL VARIABLES
 		currentQuestion = 0;
 		console.log(currentQuestion)
@@ -83,35 +80,25 @@ $(document).ready(function () {
 		console.log(numCorrect)
 		questionNumber = 1;
 		console.log(questionNumber)
-		$(".feedback").html("");
-		//REMOVE FEEDBACK
-		$(".question").html("");
-		//REMOVE QUESTION
+		$(".feedback, .question").html("");
+		//REMOVE FEEDBACK & QUESTION
 		$("fieldset").remove();
 		//removes current multi-choice	
 		$(".multi-choice").find(".btn").show();
+		//shows SUBMIT button
 		$(".btn").attr("disabled", false);
 		//enables submit button
 		$("aside.score > .stars_appear").removeClass().addClass("stars");
-		//REMOVE STARS
-		
-		$(".question").html("<h3>Question " + questionNumber  + "</h3>" + "<p>" +questions[currentQuestion].question+"</p>");
-	
-		$('<fieldset><input name="choice" class="choice" id="choice1" type="radio" value="0"><label for="choice1"></label><p>' + questions[currentQuestion].choices[0] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice2" type="radio"  value="1"><label for="choice2"></label><p>' + questions[currentQuestion].choices[1] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice3" type="radio"  value="2"><label for="choice3"></label><p>' + questions[currentQuestion].choices[2] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice4" type="radio"  value="3"><label for="choice4"></label><p>' + questions[currentQuestion].choices[3] + '</p></fieldset>').prependTo(".multi-choice > form");
-		
-		$(".rank").hide();
-		$(".rank-wrap").hide();
-		$(".quiz").show();
+		//REMOVE STARS		
+		addQuestionChoices();
+		//adds new question and choices
+			
+		$(".instruct-wrap, .rank-wrap, .rank").hide();
 		$(".multi-choice").find(".btn_next").hide();
-		$(".instruct-wrap").hide();
-	
+		$(".quiz").fadeIn(700);
 	});
-	////END NEEDS WORK////
-	
-	
-	
-	
-	
+
+	//SUBMIT BUTTON CLICK//	
 	$(".multi-choice").on("click", ".btn", function () {
 		if ($("input[type='radio']").is(":checked")) {
 			//IF the radio buttons are checked, THEN run the following code
@@ -126,23 +113,18 @@ $(document).ready(function () {
 			
 			if(currentQuestion <= 4) {
 				//only show button up until the last question
-						
 				
 				$(".btn_next").show().click(function () {
 					//NEXT BUTTON
-					var newQuestion = "<h3>Question " + questionNumber  + "</h3>" + "<p>" +questions[currentQuestion].question+"</p>";
-					//populates the h3 and p tags under the .question box by accessing the array above
-					var newChoices = '<fieldset><input name="choice" class="choice" id="choice1" type="radio" value="0"><label for="choice1"></label><p>' + questions[currentQuestion].choices[0] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice2" type="radio"  value="1"><label for="choice2"></label><p>' + questions[currentQuestion].choices[1] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice3" type="radio"  value="2"><label for="choice3"></label><p>' + questions[currentQuestion].choices[2] + '</p></fieldset>' + '<fieldset><input name="choice" class="choice" id="choice4" type="radio"  value="3"><label for="choice4"></label><p>' + questions[currentQuestion].choices[3] + '</p></fieldset>';
-					//multiple choices dynamically created and accessed from question array
-								
+											
 					$(".question").contents().remove();
 					//removes current question
 					$("fieldset").remove();
 					//removes current multi-choice
-					$(".question").html(newQuestion);
-					//adds new question
-					$(newChoices).prependTo(".multi-choice > form");
-					//adds new multi-choice
+					
+					addQuestionChoices();
+					//adds new question and choices
+					
 					$(".feedback").contents().remove();
 					//removes feedback
 					$(".btn").attr("disabled", false);
@@ -150,15 +132,16 @@ $(document).ready(function () {
 					$(this).hide();
 					//hides NEXT BUTTON
 				});
-				
-			  }
+		 	}
 		}
-	
 	})
-		
+
+
+	//////////////FUNCTIONS///////////////
 	//evaluate choice selection function
 	function evalChoice () {
 		var selection = $("input[type='radio']:checked").val();
+		var defaultText =  $(".rank > p").text("If you'd like a promotion, click NEW GAME below to try again.");
 				if(selection == questions[currentQuestion].correctAnswer) {
 					numCorrect++;
 					console.log(numCorrect);
@@ -168,18 +151,22 @@ $(document).ready(function () {
 					if (numCorrect == 1) {
 						$("aside.score > #one").removeClass().addClass("stars_appear");
 						 $(".rank > h4").text("You've earned the rank of a BRIGADIER GENERAL!");
+						 defaultText;
 					}
 					else if (numCorrect == 2) {
 						$("aside.score > #two").removeClass().addClass("stars_appear"); 
 						$(".rank > h4").text("You've earned the rank of a MAJOR GENERAL!");
+						defaultText;
 					}
 					else if (numCorrect == 3) {
 						$("aside.score > #three").removeClass().addClass("stars_appear"); 
 						$(".rank > h4").text("You've earned the rank of a LIEUTENANT GENERAL!");
+						defaultText;
 					}
 					else if (numCorrect == 4) {
 						$("aside.score > #four").removeClass().addClass("stars_appear"); 
 						$(".rank > h4").text("You've earned the rank of a GENERAL!");
+						defaultText;
 					}
 					else if (numCorrect == 5) {
 						$("aside.score > #five").removeClass().addClass("stars_appear"); 
@@ -197,16 +184,29 @@ $(document).ready(function () {
 					}
 				}
 	}
+	
 	function showRank () {
 		if(currentQuestion == 4) {
 			$(".multi-choice").find(".btn").hide();
 			$(".rank").show().click(function () {	
 				$(".quiz").hide();
 				//hides current multi-choice content		
-				$(".rank-wrap").show();
-				
+				$(".rank-wrap").fadeIn(700);
 			});
-				
 		}
 	}
+	
+	function addQuestionChoices (){
+		//ADDS NEW QUESTION
+		$(".question").html("<h3>Question " + questionNumber  + "</h3>" + "<p>" +questions[currentQuestion].question+"</p>");
+		//populates the h3 and p tags under the .question box by accessing the array above
+		for (i=3; i>-1; i--){
+		//LOOPS through multi-choice questions
+		//and ADDS NEW CHOICES
+			$('<fieldset><input name="choice" class="choice" id="choice'+[i]+'" type="radio"  value='+[i]+'><label for="choice'+[i]+'"></label><p>' + questions[currentQuestion].choices[i] + '</p></fieldset>').prependTo(".multi-choice > form");
+			//multiple choices dynamically created and accessed from question array
+		}
+	}
+////////////////END FUNCTIONS////////////////////
+
 });
