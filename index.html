@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="js/app.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Jura:600' rel='stylesheet' type='text/css'>
+<link href="css/index.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	<!--wrapper-->
+	<div id="wrapper">
+		<!--Logo-->
+        <header>
+			<img src="images/Logo.png" alt="From Bible to Battle Quiz">
+		</header>
+		
+        <!--Quiz wrapper (includes score, questions, and answers)-->
+        <section class="quiz-wrap">
+        <!--Instructions-->
+			<section class="instruct-wrap">
+            	<section class="instructions">	
+                    <h3>INSTRUCTIONS</h3>
+            		<h4>Test your knowledge on Biblical military leaders and their tactics!</h4>
+                    <p>1) Each <strong>QUESTION</strong> explains a recent historical warfare situation, in which tactics were inspired or used by a Biblical hero.</p>
+                    <p>2) Select the best answer based on your <strong>MILITARY HISTORICAL KNOWLEDGE</strong>.
+            		<p>3) <strong>EARN YOUR RANK!</strong> Stars will appear to the right for each correct answer.</p>
+                    <a href="#" class="new">EXIT</a>
+                </section>
+            </section>
+           <!--Show RANKING AFTER TAKING QUIZ--> 
+            <section class="rank-wrap">
+            	<section class="rank">	
+                    <h3>CONGRATULATIONS!</h3>
+            		<h4></h4>
+                    <p>If you'd like a promotion, click NEW GAME below to try again.</p>
+                </section>
+            </section>
+            
+            <!--Quiz-->
+			<section class="quiz">
+				               
+                <!--Question-->
+                <section class="question">
+	                <!--Question Header-->
+    	            <!--<h3>Question 1</h3>
+                	<p>On July 4, 1976, the Modern Israeli Defense Force commandos executed a nighttime raid at the Uganda airport to rescue hostages from Palestinian and German terrorists. Which Biblical military hero rescued his relative using this tactic, which has been taught in military academies across the world?</p> -->
+                </section>
+                
+                <!--Multiple Choice-->
+                <section class="multi-choice">
+					<form>
+    					<!--<fieldset>                	
+                        	<input name="choice" class="choice" id="choice1" type="checkbox"><label for="choice1"></label>
+                        		<p>Abraham</p>
+                        </fieldset>
+	                    <fieldset>                	
+                        	<input name="choice" class="choice" id="choice2" type="checkbox"><label for="choice2"></label>
+                        		<p>Moses</p>
+                        </fieldset>
+                        <fieldset>                	
+                        	<input name="choice" class="choice" id="choice3" type="checkbox"><label for="choice3"></label>
+                        		<p>Joshua</p>
+                        </fieldset>
+                        <fieldset>                	
+                        	<input name="choice" class="choice" id="choice4" type="checkbox"><label for="choice4"></label>
+                        		<p>David</p>
+						</fieldset>-->
+                    	
+                        <input name="submit" class="btn" type="submit" value="SUBMIT">
+                        <input name="submit" class="rank" type="submit" value="SHOW YOUR RANK">
+                        <input name="submit" class="btn_next" type="button" value="NEXT>>">
+                    </form>
+                                    
+                </section>
+                
+                <!--feedback section - Right or Wrong-->
+                <section class="feedback">
+ <!--               	<h3></h3>
+                    <p></p>-->
+                </section>
+                       
+    		</section>
+    		
+            <!--SCORE-STAR Rating-->
+        	<aside class="score">
+        		<h3>STARS EARNED</h3>
+                <div class="stars" id="one"></div>
+				<div class="stars" id="two"></div>
+                <div class="stars" id="three"></div>
+                <div class="stars" id="four"></div>
+                <div class="stars" id="five"></div>                
+            </aside>
+            
+        <!--END quiz-wrap-->
+        </section>
+        
+        <!--DIRECTIONS & NEW GAME BUTTON-->
+        <footer>
+        	<div id="directions"><a href="#">Directions</a></div>
+            <div id="new-game"><a href="#">New Game</a></div>        	
+        </footer>
+
+	</div>
+</body>
+</html>

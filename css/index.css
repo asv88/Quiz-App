@@ -1,0 +1,247 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-image: url(../images/banner2.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 500px;
+	background-color: rgba(230,230,230,1);
+	margin:0;
+	padding:0;
+}
+#wrapper {
+	/*max-width: 1240px;*/
+}
+
+/*HEADER ELEMENTS*/
+header {
+	width: 100%;
+	background-color: rgba(255,255,255, .8);
+	padding: 10px;
+}
+header img {
+	width: 15%;
+	max-width: 200px;
+}
+
+/*STYLING FONTS*/
+h3 {
+	font-size: 1.5em;
+	font-family: 'Special Elite', cursive;
+	color: rgba(0,89,31,1);
+	text-outline: rgba(204,204,204,1);
+	text-shadow: rgba(102,102,102,1) 1px 1px;
+	margin: 0;
+}
+h4 {
+	font-size: 2em;
+	font-family: 'Special Elite', cursive;
+	color: rgba(204,204,204, .3);
+	text-outline: rgba(204,204,204,1);
+	text-shadow: rgba(102,102,102,1) 1px 1px;
+	margin: 20px;
+	line-height: 150%;
+	letter-spacing: -0.5px;
+}
+p {
+	font-size: 1em;
+	color: rgba(0,89,31,1);
+	font-family: 'Jura', sans-serif;
+	line-height: 160%;
+}
+
+/*QUIZ CONTENTS*/
+section.quiz-wrap {
+	width: 70%;
+	margin-top: 20px;
+	float: right;
+	clear: both;
+}
+/*directions*/
+section.instruct-wrap {
+	display: block;
+	padding-bottom: 5%;
+}
+section.rank-wrap {
+	padding-bottom: 5%;
+}
+section.quiz, section.rank-wrap  {
+	display:none;
+}
+section.quiz, section.instruct-wrap, section.rank-wrap {
+	float: left;
+	width: 65%;
+	background-color: rgba(255,255,255, 1);
+}
+/*standard margins for containers inside QUIZ-WRAP*/
+section.question, section.multi-choice, section.feedback, section.instructions, section.rank {
+	margin: 20px 4% 4% 4%;
+}
+/*MULTIPLE CHOICE STYLING*/
+section.multi-choice form, section.feedback {
+	border-top: rgba(210,210,210, 1)1px solid;
+	border-top-style: solid;
+	box-shadow: rgba(230,230,230,.5) 0px -1px 0px;
+}
+section.multi-choice fieldset {
+	float: left;
+	width: 92%;
+	margin: 15px 0 0 0;
+	border: none;
+}
+section.multi-choice p {
+	float: left;
+	width: 70%;
+	margin: 0 0 0 10px;	
+}
+section.multi-choice label {
+	display: inline;
+}
+section.multi-choice .choice {
+	display: none;
+}
+section.multi-choice .choice + label {
+	background-color: rgba(255,255,255,1);
+	border: 1px solid rgba(36,61,117,1);
+	box-shadow: 1px 1px 0px rgba(36,61,117,1), inset 0px 0px 2px #243D75;
+	padding: 9px;
+	display: inline-block;
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+section.multi-choice .choice + label:active, section.multi-choice .choice:checked + label:active {
+	box-shadow: inset 0px 0px 2px #CCCCCC;
+}
+section.multi-choice .choice:checked + label {
+	background-color: rgba(255,255,255,1);
+	border: 1px solid rgba(36,61,117,1);
+	box-shadow: inset 0px 0px 2px #243D75;
+}
+section.multi-choice .choice:checked + label:after {
+	content: '\2716';
+	font-size: 16px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: rgba(36,61,117,1);
+}
+
+/*BUTTON STYLING*/
+
+/*SUBMIT styling*/
+section.multi-choice input.rank {
+	display:none;
+}
+section.multi-choice input.btn, section.instructions .new, section.multi-choice input.rank  {
+	background-color: rgba(0,89,31,1);
+	box-shadow: 3px 3px 0px #CCCCCC;
+	font-family: 'Jura', sans-serif;
+	color: rgba(255,255,255,1);
+	padding: 10px;
+	float: left;
+	clear: both;
+	border: none;
+	margin: 15px 5% 0% 35%;
+	width: 30%;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: none;
+}
+/*NEXT styling*/
+section.multi-choice input.btn_next {
+	background-color: rgba(0,89,31,1);
+	box-shadow: 3px 3px 0px #CCCCCC;
+	font-family: 'Jura', sans-serif;
+	color: rgba(255,255,255,1);
+	padding: 10px;
+	border: none;
+	margin: 15px 1% 0% 1%;
+	width: 75px;
+	float: right;
+	cursor: pointer;
+	box-sizing: none;
+	display: none;
+}
+/*NEXT & SUBMIT styling*/
+section.multi-choice input.btn:active, section.multi-choice input.btn:hover, section.multi-choice input.btn_next:active, section.multi-choice input.btn_next:hover, section.instructions .new:hover, section.instructions .new:active, section.multi-choice input.rank:active, section.multi-choice input.rank:hover {
+	background-color: rgba(36,61,117,1);
+	box-shadow: none;
+}
+/*FEEDBACK TO CHOICE styling*/
+section.feedback {
+	clear: both;
+	float:left;
+}
+section.feedback h3 {
+	padding: 15px 0 0 0;
+}
+
+/*SCORE styling*/
+aside.score {
+	float:left;
+	width: 30%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	padding-bottom: 30px;
+	height: auto;
+	background-color: rgba(230,230,230, .7);
+}
+aside.score h3 {
+	margin: 20px 5% 5% 7%;
+}
+aside.score .stars {
+	width: 100%;
+	background-image: url(../images/Star_Rating_none.png);
+	background-size: 130px;
+	height: 50px;
+	margin: 10px 0 0 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: block;
+}
+.stars_appear {
+	width: 100%;
+	background-image: url(../images/Star_Rating.png);
+	background-size: 130px;
+	height: 50px;
+	margin: 10px 0 0 0;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/*FOOTER HOLDING NEW GAME AND DIRECTIONS styling*/
+footer {
+	clear: both;
+	bottom: 0;
+	float: left;
+  	position:fixed;
+   	left:0px;
+    bottom:0px;
+    height: 4em;
+    width:100%;
+}
+div#directions {
+	float: left;
+	margin: 2%;
+}
+div#new-game {
+	float: right;
+	margin: 2%;
+}
+div#directions a:link, div#new-game a:link, div#directions a:visited, div#new-game a:visited {
+	background-color: rgba(0,89,31,1);
+	font-family: 'Jura', sans-serif;
+	color: rgba(255,255,255,1);
+	box-shadow: 3px 3px 0px #CCCCCC;
+	text-decoration: none;
+	padding: 10px 30px;
+}
+div#directions a:hover, div#new-game a:hover, div#directions a:active, div#new-game a:active {
+	background-color: rgba(36,61,117,1);
+	box-shadow: none;
+}
+	
